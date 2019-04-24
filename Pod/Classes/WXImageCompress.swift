@@ -86,7 +86,8 @@ public extension UIImage {
      - returns: new image
      */
     private func resizedImage(size: CGSize) -> UIImage {
-        let newRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        // Floor is needed to avoid white lines (the actual image is always an integral number of pixels)
+        let newRect = CGRect(x: 0, y: 0, width: floor(size.width), height: floor(size.height))
         var newImage: UIImage!
         UIGraphicsBeginImageContext(newRect.size)
         newImage = UIImage(cgImage: self.cgImage!, scale: 1, orientation: self.imageOrientation)
